@@ -1,40 +1,25 @@
-// HTTP STATUS
+document.getElementById('ajax').addEventListener('click', getAllEmployees);
 
-// 200 : OK
-// 403 : Forbidden
-// 404 : Not Found
-// 505 : Internal Server Error
-
-// readyState
-
-// 0 : Request not initialized
-// 1 : Server connection established
-// 2 : request received
-// 3 : processing request
-// 4 : request finished and response is ready
-
-document.getElementById('btn').addEventListener('click', () => {
-	// xhr= XMLHttpRequest
+function getAllEmployees() {
 	const xhr = new XMLHttpRequest();
 
-	xhr.onprogress = function() {
-		console.log('İşleniyor...', this.readyState);
-	};
+	xhr.open('GET', 'employees.json', true);
 	xhr.onload = function() {
-		console.log('İşlendi', this.readyState);
+		let list = document.getElementById('employees');
 		if (this.status == 200) {
-			document.getElementById('ajax').textContent = this.responseText;
+			const employees = JSON.parse(this.responseText);
+			console.log(employees);
+			employees.forEach((employee) => {
+				list.innerHTML += `
+                <tr>
+                    <td>${employee.name}</td>
+                    <td>${employee.title}</td>
+                    <td>${employee.age}</td>
+                    </tr>
+                `;
+			});
 		}
 	};
 
-	// Eski
-	// xhr.onreadystatechange = function() {
-	// 	if (this.status == 200 && this.readyState == 4) {
-	// 		//Respone hazır
-	// 		console.log(this.responseText);
-	// 	}
-	// };
-
-	xhr.open('GET', 'example.txt', true);
 	xhr.send();
-});
+}

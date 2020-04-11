@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Ahmet Kadayıfçı",
+        "title": "Full Stack Developer",
+        "age": 21
+    },
+    {
+        "name": "Ulaşcan Demirbağ",
+        "title": "Backend Developer",
+        "age": 21
+    },
+    {
+        "name": "Mehmet Kadayıfçı",
+        "title": "Graphic Designer",
+        "age": 27
+    }
+]
