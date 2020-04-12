@@ -22,9 +22,9 @@
 // getJsonFile()
 // getExternalFile()
 
-// FETCH GET İŞLEMLERİ
-
 class Request {
+
+    // FETCH GET İŞLEMLERİ
     get(url) {
         return new Promise((resolve, reject) => {
             fetch(url)
@@ -33,10 +33,30 @@ class Request {
                 .catch(err => reject(err))
         })
     }
+    // FETCH POST İŞLEMLERİ
+    post(url, data) {
+        return new Promise((resolve, reject) => {
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { "Content-type": "application/json; charset=UTF-8 " }
+            })
+                .then(response => response.json())
+                .then(response => resolve(response))
+                .catch(err => reject(err))
+        })
+    }
 }
-
-const reques = new Request()
+const request = new Request()
 let albums
-reques.get('https://jsonplaceholder.typicode.com/albums')
+// FETCH GET İŞLEMLERİ
+request.get('https://jsonplaceholder.typicode.com/albums')
     .then(albums => console.log(albums))
+    .catch(err => console.log(err))
+
+// FETCH POST İŞLEMLERİ
+request.post('https://jsonplaceholder.typicode.com/albums', {
+    userId: 23, title: 'AC/DC'
+})
+    .then(newAlbum => console.log(newAlbum))
     .catch(err => console.log(err))
