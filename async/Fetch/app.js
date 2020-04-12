@@ -46,6 +46,27 @@ class Request {
                 .catch(err => reject(err))
         })
     }
+    // FETCH PUT İŞLEMLERİ
+    put(url, data) {
+        return new Promise((resolve, reject) => {
+            fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(data),
+                headers: { 'Content-type': 'application/json; charset=UTF-8' }
+            })
+                .then(response => response.json())
+                .then(response => resolve(response))
+                .catch(err => reject(err))
+        })
+    }
+    // FETCH DELETE İŞLEMLERİ
+    delete(url) {
+        return new Promise((resolve, reject) => {
+            fetch(url, { method: 'DELETE' })
+                .then(response => resolve("Veri başarıyla silindi"))
+                .catch(err => reject(err))
+        })
+    }
 }
 const request = new Request()
 let albums
@@ -60,3 +81,21 @@ request.post('https://jsonplaceholder.typicode.com/albums', {
 })
     .then(newAlbum => console.log(newAlbum))
     .catch(err => console.log(err))
+// FETCH POST İŞLEMLERİ
+request.put('https://jsonplaceholder.typicode.com/albums/34', {
+    userId: 43, title: 'LALALA'
+})
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
+// FETCH DELETE İŞLEMLERİ
+request.delete('https://jsonplaceholder.typicode.com/albums/34')
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+
+
+
+
+
+
+
+
