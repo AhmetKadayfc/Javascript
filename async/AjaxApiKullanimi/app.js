@@ -14,6 +14,7 @@ function convertToMany() {
 
     }
     xhr.send()
+
 }
 
 setTimeout(() => {
@@ -29,3 +30,6 @@ let value = setInterval(() => {
 document.getElementById('stop').addEventListener('click', () => {
     clearInterval(value)
 })
+
+}
+
