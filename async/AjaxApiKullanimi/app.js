@@ -15,3 +15,17 @@ function convertToMany() {
     }
     xhr.send()
 }
+
+setTimeout(() => {
+    console.log('hellooo')
+}, 5000)
+
+let i = 0
+let value = setInterval(() => {
+    i++
+    console.log("sayı : ", i)
+}, 1000);
+
+document.getElementById('stop').addEventListener('click', () => {
+    clearInterval(value)
+})
