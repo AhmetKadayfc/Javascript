@@ -23,7 +23,7 @@ class Request {
             if (this.xhr.status == 200) {
                 callback(null, JSON.parse(this.xhr.responseText))
             } else {
-                callback("Yanlış giden bir şeyler var!", null)
+                callback("Yanlış giden bir şeyler var!", null);
             }
         }
         this.xhr.send()
