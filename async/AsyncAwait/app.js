@@ -48,3 +48,51 @@ async function getCurrency(url) {
 //     .then(data => console.log(data))
 //     .catch(err => console.error(err))
 
+
+// ASYNC AWAIT REQUEST İŞLEMLERİ
+
+
+class Request {
+    async get(url) {
+        const response = await fetch(url)
+        const responseData = await response.json()
+        return responseData
+    }
+    async post(url, data) {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        })
+        const responseData = await response.json()
+        return responseData
+    }
+    async put(url, data) {
+        const response = await fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' }
+        })
+        const responseData = await response.json()
+        return responseData
+    }
+    async delete(url) {
+        const response = await fetch(url, { method: 'DELETE' })
+        return 'Silme işlemi başarıyla gerçekleştirildi'
+    }
+}
+
+const request = new Request
+
+request.get('https://jsonplaceholder.typicode.com/albums')
+    .then(response => console.log(response))
+
+request.post('https://jsonplaceholder.typicode.com/albums', { userId: 32, title: 'AC/DC' })
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+request.put('https://jsonplaceholder.typicode.com/albums/54', { userId: 23, title: 'tarkan karma' })
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
+request.delete('https://jsonplaceholder.typicode.com/albums/55')
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
